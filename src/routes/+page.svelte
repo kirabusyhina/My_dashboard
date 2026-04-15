@@ -1,20 +1,24 @@
 <script>
 	import Card from '$lib/components/Card.svelte';
-    import Todo from '$lib/components/Todo.svelte';
+	import Todo from '$lib/components/Todo.svelte';
+	import Notes from '$lib/components/Notes.svelte';
 </script>
 
 <main class="dashboard">
 	<h1 class="title">Dashboard</h1>
 
 	<div class="grid">
-	<Card>
-		<Todo />
-	</Card>
+		<Card>
+			<Todo />
+		</Card>
 
-	<Card>📒 Notes</Card>
-	<Card>⏰ Clock</Card>
-	<Card>⚙️ Widget</Card>
-</div>
+		<Card>
+			<Notes />
+		</Card>
+        
+		<Card>⏰ Clock</Card>
+		<Card>⚙️ Widget</Card>
+	</div>
 </main>
 
 <style>
