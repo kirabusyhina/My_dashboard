@@ -1,0 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui;
+  background: radial-gradient(circle at top, #1E1B4B, #020617);
+  color: #E5E7EB;
+}
