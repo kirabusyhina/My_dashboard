@@ -20,6 +20,8 @@
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
   .card::before {
@@ -40,4 +42,8 @@
     transform: translateY(-6px) scale(1.01);
     box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
   }
+  
+  .card:active {
+	transform: scale(1.03);
+}
 </style>

@@ -2,22 +2,46 @@
 	import Card from '$lib/components/Card.svelte';
 	import Todo from '$lib/components/Todo.svelte';
 	import Notes from '$lib/components/Notes.svelte';
+
+	import { dndzone } from 'svelte-dnd-action';
+
+	let widgets = $state([
+		{ id: 1, type: 'todo' },
+		{ id: 2, type: 'notes' },
+		{ id: 3, type: 'clock' },
+		{ id: 4, type: 'widget' }
+	]);
+
+	function handleDnd(e) {
+		widgets = e.detail.items;
+	}
 </script>
 
 <main class="dashboard">
 	<h1 class="title">Dashboard</h1>
 
-	<div class="grid">
-		<Card>
-			<Todo />
-		</Card>
-
-		<Card>
-			<Notes />
-		</Card>
-        
-		<Card>⏰ Clock</Card>
-		<Card>⚙️ Widget</Card>
+	<div
+		class="grid"
+		use:dndzone={{
+			items: widgets,
+			flipDurationMs: 300
+		}}
+		onconsider={handleDnd}
+		onfinalize={handleDnd}
+	>
+		{#each widgets as widget (widget.id)}
+			<Card>
+				{#if widget.type === 'todo'}
+					<Todo />
+				{:else if widget.type === 'notes'}
+					<Notes />
+				{:else if widget.type === 'clock'}
+					<h3>⏰ Clock</h3>
+				{:else}
+					<h3>⚙️ Widget</h3>
+				{/if}
+			</Card>
+		{/each}
 	</div>
 </main>
 
@@ -40,11 +64,15 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(2, 1fr);
 		gap: 24px;
 	}
 
-	.grid :global(.wide) {
-		grid-column: span 2;
+	.grid :global(.card) {
+		cursor: grab;
+	}
+
+	.grid :global(.card:active) {
+		cursor: grabbing;
 	}
 </style>
