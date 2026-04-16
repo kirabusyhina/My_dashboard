@@ -2,6 +2,7 @@
 	import Card from '$lib/components/Card.svelte';
 	import Todo from '$lib/components/Todo.svelte';
 	import Notes from '$lib/components/Notes.svelte';
+    import Clock from '$lib/components/Clock.svelte';
 
 	import { dndzone } from 'svelte-dnd-action';
 
@@ -36,7 +37,7 @@
 				{:else if widget.type === 'notes'}
 					<Notes />
 				{:else if widget.type === 'clock'}
-					<h3>⏰ Clock</h3>
+					<Clock />
 				{:else}
 					<h3>⚙️ Widget</h3>
 				{/if}
