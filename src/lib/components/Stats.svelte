@@ -42,7 +42,7 @@
 
 	.fill {
 		height: 100%;
-		background: linear-gradient(90deg, #7c3aed, #06b6d4);
+		background: linear-gradient(90deg, #7c3aed, #f595f0);
 		transition: width 0.3s ease;
 	}
 </style>

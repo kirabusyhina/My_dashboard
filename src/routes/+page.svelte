@@ -5,6 +5,27 @@
 	import Clock from '$lib/components/Clock.svelte';
 	import Stats from '$lib/components/Stats.svelte';
 
+	let theme = $state('dark');
+
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			const saved = localStorage.getItem('theme');
+			if (saved) theme = saved;
+		}
+	});
+
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('theme', theme);
+		}
+	});
+
+	$effect(() => {
+		if (typeof document !== 'undefined') {
+			document.body.dataset.theme = theme;
+		}
+	});
+
 	let tasks = $state([]);
 
 	import { dndzone } from 'svelte-dnd-action';
@@ -33,10 +54,20 @@
 	function handleDnd(e) {
 		widgets = e.detail.items;
 	}
+
+	function toggleTheme() {
+		theme = theme === 'dark' ? 'light' : 'dark';
+	}
 </script>
 
 <main class="dashboard">
-	<h1 class="title">Dashboard</h1>
+	<div class="header">
+		<h1 class="title">Dashboard</h1>
+
+		<button class="theme-btn" onclick={toggleTheme}>
+			{theme === 'dark' ? '☀️' : '🌙'}
+		</button>
+	</div>
 
 	<div
 		class="grid"
@@ -67,7 +98,6 @@
 
 <style>
 	.dashboard {
-		min-height: 100vh;
 		min-width: 1100px;
 		margin: 0 auto;
 		padding: 40px;
@@ -78,7 +108,7 @@
 		font-weight: 600;
 		margin-bottom: 24px;
 
-		background: linear-gradient(90deg, #7c3aed, #06b6d4);
+		background: linear-gradient(90deg, #7c3aed, #f595f0);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -96,5 +126,29 @@
 
 	.grid :global(.card:active) {
 		cursor: grabbing;
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 24px;
+	}
+
+	.theme-btn {
+		width: 40px;
+		height: 40px;
+		border-radius: 12px;
+		border: none;
+		cursor: pointer;
+
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+
+		transition: all 0.2s ease;
+	}
+
+	.theme-btn:hover {
+		transform: scale(1.05);
 	}
 </style>

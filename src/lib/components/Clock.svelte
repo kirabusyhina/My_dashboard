@@ -34,7 +34,7 @@
 	.time {
 		font-size: 32px;
 		font-weight: bold;
-		background: linear-gradient(90deg, #7c3aed, #06b6d4);
+		background: linear-gradient(90deg, #7c3aed, #f595f0);
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;

@@ -77,13 +77,22 @@
 		border-radius: 8px;
 		border: none;
 		outline: none;
-		background: rgba(255, 255, 255, 0.5);
-		color: white;
+		background: rgba(255, 255, 255, 0.15);
+		color: #111;
 		transition: all 0.2s ease;
 	}
 
+	:global(body[data-theme='dark']) input {
+		color: white;
+		background: rgba(255, 255, 255, 0.08);
+	}
+	:global(body[data-theme='light']) input {
+		color: #0f172a;
+		background: rgba(0, 0, 0, 0.05);
+	}
+
 	button {
-		background: linear-gradient(135deg, #7c3aed, #06b6d4);
+		background: linear-gradient(135deg, #7c3aed, #f595f0);
 		border: none;
 		border-radius: 8px;
 		padding: 8px 12px;
