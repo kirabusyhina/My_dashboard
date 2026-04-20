@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	let tasks = $state([]);
+	let { tasks = $bindable([]) } = $props();
+
 	let input = $state('');
 
 	function addTask() {
@@ -11,23 +12,22 @@
 	}
 
 	function toggleTask(index) {
-		tasks[index].done = !tasks[index].done;
-		tasks = tasks;
+		tasks = tasks.map((task, i) => (i === index ? { ...task, done: !task.done } : task));
 	}
 
 	function deleteTask(index) {
 		tasks = tasks.filter((_, i) => i !== index);
 	}
 
-    // ЗАВАНТАЖЕННЯ при старті
+	// ЗАВАНТАЖЕННЯ при старті
 	onMount(() => {
-		const saved = localStorage.getItem("tasks");
+		const saved = localStorage.getItem('tasks');
 		if (saved) tasks = JSON.parse(saved);
 	});
 
 	// ЗБЕРЕЖЕННЯ при зміні
 	$effect(() => {
-		localStorage.setItem("tasks", JSON.stringify(tasks));
+		localStorage.setItem('tasks', JSON.stringify(tasks));
 	});
 </script>
 
@@ -44,7 +44,7 @@
 	</div>
 
 	<ul>
-		{#each tasks as task, i}
+		{#each tasks as task, i (i)}
 			<li class:done={task.done}>
 				<button type="button" onclick={() => toggleTask(i)}>
 					{task.text}
@@ -77,8 +77,9 @@
 		border-radius: 8px;
 		border: none;
 		outline: none;
-		background: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.5);
 		color: white;
+		transition: all 0.2s ease;
 	}
 
 	button {
@@ -100,6 +101,7 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 6px 0;
+		transition: all 0.2s ease;
 	}
 
 	.done button {

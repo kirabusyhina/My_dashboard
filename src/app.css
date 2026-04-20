@@ -8,3 +8,12 @@ body {
   background: radial-gradient(circle at top, #1E1B4B, #020617);
   color: #E5E7EB;
 }
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.15), transparent),
+	            radial-gradient(circle at 80% 80%, rgba(6,182,212,0.15), transparent);
+	z-index: -1;
+}

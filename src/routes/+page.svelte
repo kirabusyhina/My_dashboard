@@ -2,7 +2,10 @@
 	import Card from '$lib/components/Card.svelte';
 	import Todo from '$lib/components/Todo.svelte';
 	import Notes from '$lib/components/Notes.svelte';
-    import Clock from '$lib/components/Clock.svelte';
+	import Clock from '$lib/components/Clock.svelte';
+	import Stats from '$lib/components/Stats.svelte';
+
+	let tasks = $state([]);
 
 	import { dndzone } from 'svelte-dnd-action';
 
@@ -10,7 +13,7 @@
 		{ id: 1, type: 'todo' },
 		{ id: 2, type: 'notes' },
 		{ id: 3, type: 'clock' },
-		{ id: 4, type: 'widget' }
+		{ id: 4, type: 'stats' }
 	]);
 
 	function handleDnd(e) {
@@ -33,11 +36,13 @@
 		{#each widgets as widget (widget.id)}
 			<Card>
 				{#if widget.type === 'todo'}
-					<Todo />
+					<Todo bind:tasks />
 				{:else if widget.type === 'notes'}
 					<Notes />
 				{:else if widget.type === 'clock'}
 					<Clock />
+				{:else if widget.type === 'stats'}
+					<Stats {tasks} />
 				{:else}
 					<h3>⚙️ Widget</h3>
 				{/if}

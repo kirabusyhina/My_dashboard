@@ -44,9 +44,10 @@
 		border: none;
 		outline: none;
 
-		background: rgba(255,255,255,0.08);
+		background: rgba(255,255,255,0.05);
 		color: white;
 
 		font-size: 14px;
+		transition: all 0.2s ease;
 	}
 </style>

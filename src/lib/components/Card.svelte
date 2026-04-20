@@ -13,7 +13,7 @@
     border-radius: 20px;
 
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
 
     border: 1px solid rgba(255,255,255,0.08);
 
@@ -42,7 +42,7 @@
     transform: translateY(-6px) scale(1.01);
     box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
   }
-  
+
   .card:active {
 	transform: scale(1.03);
 }
