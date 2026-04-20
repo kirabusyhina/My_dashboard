@@ -8,7 +8,7 @@
 
 <style>
   .card {
-    min-height: 180px;
+    min-height: 140px;
     padding: 20px;
     border-radius: 20px;
 
@@ -40,7 +40,7 @@
 
   .card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
+    box-shadow: 0 25px 60px rgba(124, 58, 237, 0.25);
   }
 
   .card:active {

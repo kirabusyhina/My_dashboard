@@ -1,27 +1,24 @@
 <script>
-	import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-	let text = $state("");
+	let text = $state('');
 
 	// завантаження
 	onMount(() => {
-		const saved = localStorage.getItem("notes");
+		const saved = localStorage.getItem('notes');
 		if (saved) text = saved;
 	});
 
 	// автозбереження
 	$effect(() => {
-		localStorage.setItem("notes", text);
+		localStorage.setItem('notes', text);
 	});
 </script>
 
 <div class="notes">
 	<h3>📘 Notes</h3>
 
-	<textarea
-		placeholder="Write something..."
-		bind:value={text}
-	></textarea>
+	<textarea placeholder="Write something..." bind:value={text}></textarea>
 </div>
 
 <style>
@@ -44,10 +41,14 @@
 		border: none;
 		outline: none;
 
-		background: rgba(255,255,255,0.05);
+		background: rgba(255, 255, 255, 0.05);
 		color: white;
 
 		font-size: 14px;
 		transition: all 0.2s ease;
+	}
+
+	textarea:focus {
+		background: rgba(255, 255, 255, 0.08);
 	}
 </style>

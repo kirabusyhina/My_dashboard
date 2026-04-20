@@ -68,6 +68,8 @@
 <style>
 	.dashboard {
 		min-height: 100vh;
+		min-width: 1100px;
+		margin: 0 auto;
 		padding: 40px;
 	}
 

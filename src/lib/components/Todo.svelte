@@ -104,6 +104,10 @@
 		transition: all 0.2s ease;
 	}
 
+	li:hover {
+		transform: translateX(4px);
+	}
+
 	.done button {
 		text-decoration: line-through;
 		opacity: 0.5;
