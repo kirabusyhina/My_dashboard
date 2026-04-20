@@ -16,6 +16,20 @@
 		{ id: 4, type: 'stats' }
 	]);
 
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			const saved = localStorage.getItem('widgets');
+			if (saved) {
+				widgets = JSON.parse(saved);
+			}
+		}
+	});
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('widgets', JSON.stringify(widgets));
+		}
+	});
+
 	function handleDnd(e) {
 		widgets = e.detail.items;
 	}
